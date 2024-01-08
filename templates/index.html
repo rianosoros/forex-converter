@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+</head>
+<body>
+    <h1>Currency Converter</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li style="color: {% if 'error' in message %}red{% else %}green{% endif %}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <form method="post">
+        {{ form.csrf_token }}
+        {{ form.from_currency.label }} {{ form.from_currency }}
+        {{ form.to_currency.label }} {{ form.to_currency }}
+        {{ form.amount.label }} {{ form.amount }}
+        {{ form.submit }}
+    </form>
+</body>
+</html>
